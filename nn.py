@@ -27,3 +27,19 @@ class NeuralNetwork():
 
         self.weights1 += deltaWeights1
         self.weights2 += deltaWeights2
+
+    def error(self):
+        
+        errorMatrix = np.power((self.y - self.output), 2)
+
+        return np.sum(errorMatrix)
+
+    def train(self, epochs):
+        
+        for i in range(epochs):
+            
+            self.feedForward()
+
+            print("Error in epoch " + str(i) + " is: " + str(self.error()))
+
+            self.backProp()
